@@ -23,7 +23,7 @@ public class ContratService {
         this.contratMapper = contratMapper;
     }
 
-    public Contrat creerContrat(long idAbonne, String adresse) {
+    public Contrat creerContrat(Long idAbonne, String adresse) {
         ContratDTO contratDTO = new ContratDTO();
         contratDTO.setAdresse(adresse);
 

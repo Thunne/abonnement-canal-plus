@@ -2,10 +2,10 @@ package com.canalplus.abonnement.service;
 
 import com.canalplus.abonnement.constant.HistoriqueMouvementConstant;
 import com.canalplus.abonnement.dto.AbonneDTO;
+import com.canalplus.abonnement.dto.ContratDTO;
 import com.canalplus.abonnement.dto.HistoriqueMouvementDTO;
 import com.canalplus.abonnement.entity.Abonne;
-import com.canalplus.abonnement.entity.HistoriqueMouvement;
-import com.canalplus.abonnement.mapper.HistoriqueMouvementMapper;
+import com.canalplus.abonnement.entity.Contrat;
 import com.canalplus.abonnement.repository.AbonneRepository;
 import com.canalplus.abonnement.repository.HistoriqueMouvementRepository;
 import org.springframework.stereotype.Service;
@@ -20,14 +20,10 @@ public class AbonneService {
 
     private final AbonneRepository abonneRepository;
     private final AbonneMapper abonneMapper;
-    private final HistoriqueMouvementRepository historiqueMouvementRepository;
-    private final HistoriqueMouvementMapper historiqueMouvementMapper;
 
-    public AbonneService(AbonneRepository abonneRepository, HistoriqueMouvementRepository historiqueMouvementRepository, AbonneMapper abonneMapper, HistoriqueMouvementMapper historiqueMouvementMapper) {
+    public AbonneService(AbonneRepository abonneRepository, AbonneMapper abonneMapper) {
         this.abonneRepository = abonneRepository;
-        this.historiqueMouvementRepository = historiqueMouvementRepository;
         this.abonneMapper = abonneMapper;
-        this.historiqueMouvementMapper = historiqueMouvementMapper;
     }
 
     /**
@@ -50,6 +46,21 @@ public class AbonneService {
             Abonne abonneModifie = this.get(abonne.getId());
             historiqueMouvement.setModificationType(HistoriqueMouvementConstant.Type.MODIFICATION.getType());
             historiqueMouvement.setAncienneAdresse(abonneModifie.getAdresse());
+            historiqueMouvement.setNouvelleAdresse(abonne.getAdresse());
+
+            // On modifie les adresses dans les contrats déjà présent
+            if(!abonneModifie.getContrats().isEmpty()) {
+                List<ContratDTO> contrats = new ArrayList<>();
+                for(Contrat contrat : abonneModifie.getContrats()) {
+                    ContratDTO contratDTO = new ContratDTO();
+                    contratDTO.setId(contrat.getId());
+                    contratDTO.setAdresse(abonne.getAdresse());
+                    contratDTO.setAbonne(abonne);
+                    contrats.add(contratDTO);
+                }
+
+                abonne.setContrats(contrats);
+            }
 
         // Dans le cas d'une création
         } else {

@@ -30,4 +30,12 @@ public class Contrat {
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
+
+    public Abonne getAbonne() {
+        return abonne;
+    }
+
+    public void setAbonne(Abonne abonne) {
+        this.abonne = abonne;
+    }
 }
