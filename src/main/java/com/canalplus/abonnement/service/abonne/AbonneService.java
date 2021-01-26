@@ -1,4 +1,4 @@
-package com.canalplus.abonnement.service;
+package com.canalplus.abonnement.service.abonne;
 
 import com.canalplus.abonnement.constant.HistoriqueMouvementConstant;
 import com.canalplus.abonnement.dto.AbonneDTO;
@@ -7,7 +7,6 @@ import com.canalplus.abonnement.dto.HistoriqueMouvementDTO;
 import com.canalplus.abonnement.entity.Abonne;
 import com.canalplus.abonnement.entity.Contrat;
 import com.canalplus.abonnement.repository.AbonneRepository;
-import com.canalplus.abonnement.repository.HistoriqueMouvementRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

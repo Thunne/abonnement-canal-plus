@@ -5,8 +5,8 @@ import com.canalplus.abonnement.dto.AbonneDTO;
 import com.canalplus.abonnement.entity.Abonne;
 import com.canalplus.abonnement.entity.Contrat;
 import com.canalplus.abonnement.entity.HistoriqueMouvement;
-import com.canalplus.abonnement.service.AbonneService;
-import com.canalplus.abonnement.service.ContratService;
+import com.canalplus.abonnement.service.abonne.AbonneService;
+import com.canalplus.abonnement.service.contrat.ContratService;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -45,6 +45,21 @@ public class StepDefinitions {
         this.abonne = this.abonneService.get(1L);
     }
 
+    @Given("un abonné avec plusieurs contrats et une adresse principale à l’international")
+    public void un_abonne_avec_plusieurs_contrats_et_une_adresse_principale_a_l_international() {
+        AbonneDTO abonneDTO = new AbonneDTO();
+        abonneDTO.setAdresse("Westminster, London SW1A 1AA, Royaume-Uni");
+        abonneDTO.setNom("Michel");
+        abonneDTO.setPrenom("Jean");
+        this.abonneService.save(abonneDTO);
+
+        contratService.creerContrat(1L, "Westminster, London SW1A 1AA, Royaume-Uni");
+        contratService.creerContrat(1L, "Westminster, London SW1A 1AA, Royaume-Uni");
+        contratService.creerContrat(1L, "Westminster, London SW1A 1AA, Royaume-Uni");
+
+        this.abonne = this.abonneService.get(1L);
+    }
+
     @When("le conseiller modifie l'adresse de l'abonné")
     public void le_conseiller_modifie_l_adresse_de_l_abonne() {
         AbonneDTO abonneDTO = new AbonneDTO();
@@ -63,6 +78,11 @@ public class StepDefinitions {
         for(Contrat contrat : this.abonne.getContrats()) {
             assertEquals("16 Place de la Concorde, 75014 Paris", contrat.getAdresse());
         }
+    }
+
+    @Then("l’adresse est modifiée uniquement sur le premier contrat de l’abonné")
+    public void l_adresse_est_modifiee_uniquement_sur_le_premier_contrat_de_l_abonne() {
+        assertEquals("Westminster, London SW1A 1AA, Royaume-Uni", this.abonne.getContrats().get(0).getAdresse());
     }
 
     @And("un mouvement de modification d'adresse est créé avec la nouvelle adresse")

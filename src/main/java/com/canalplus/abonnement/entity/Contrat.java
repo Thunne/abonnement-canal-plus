@@ -1,6 +1,7 @@
 package com.canalplus.abonnement.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Contrat {
@@ -14,6 +15,9 @@ public class Contrat {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Abonne abonne;
+
+    @OneToMany(mappedBy = "contrat", fetch = FetchType.EAGER, cascade = CascadeType.MERGE, orphanRemoval = true)
+    private List<HistoriqueMouvement> historiqueMouvements;
 
     public long getId() {
         return id;
@@ -37,5 +41,13 @@ public class Contrat {
 
     public void setAbonne(Abonne abonne) {
         this.abonne = abonne;
+    }
+
+    public List<HistoriqueMouvement> getHistoriqueMouvements() {
+        return historiqueMouvements;
+    }
+
+    public void setHistoriqueMouvements(List<HistoriqueMouvement> historiqueMouvements) {
+        this.historiqueMouvements = historiqueMouvements;
     }
 }

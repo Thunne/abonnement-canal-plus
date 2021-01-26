@@ -5,6 +5,7 @@ import com.canalplus.abonnement.constant.HistoriqueMouvementConstant;
 import com.canalplus.abonnement.dto.AbonneDTO;
 import com.canalplus.abonnement.entity.Abonne;
 import com.canalplus.abonnement.repository.AbonneRepository;
+import com.canalplus.abonnement.service.abonne.AbonneService;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;

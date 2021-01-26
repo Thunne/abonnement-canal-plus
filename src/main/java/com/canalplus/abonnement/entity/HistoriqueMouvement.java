@@ -15,6 +15,7 @@ public class HistoriqueMouvement {
     private Abonne abonne;
 
     @ManyToOne
+    @JoinColumn(name = "contrat_id")
     private Contrat contrat;
 
     @Column(name = "modification_type")

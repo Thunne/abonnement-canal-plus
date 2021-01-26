@@ -2,7 +2,7 @@ package com.canalplus.abonnement.web;
 
 import com.canalplus.abonnement.dto.AbonneDTO;
 import com.canalplus.abonnement.entity.Abonne;
-import com.canalplus.abonnement.service.AbonneService;
+import com.canalplus.abonnement.service.abonne.AbonneService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

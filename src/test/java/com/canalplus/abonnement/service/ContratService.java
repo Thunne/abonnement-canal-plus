@@ -3,7 +3,7 @@ package com.canalplus.abonnement.service;
 import com.canalplus.abonnement.dto.AbonneDTO;
 import com.canalplus.abonnement.dto.ContratDTO;
 import com.canalplus.abonnement.entity.Contrat;
-import com.canalplus.abonnement.mapper.ContratMapper;
+import com.canalplus.abonnement.service.contrat.ContratMapper;
 import com.canalplus.abonnement.repository.AbonneRepository;
 import com.canalplus.abonnement.repository.ContratRepository;
 import org.springframework.stereotype.Service;

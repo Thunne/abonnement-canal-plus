@@ -1,9 +1,9 @@
-package com.canalplus.abonnement.service;
+package com.canalplus.abonnement.service.abonne;
 
 import com.canalplus.abonnement.dto.AbonneDTO;
 import com.canalplus.abonnement.entity.Abonne;
-import com.canalplus.abonnement.mapper.ContratMapper;
-import com.canalplus.abonnement.mapper.HistoriqueMouvementMapper;
+import com.canalplus.abonnement.service.contrat.ContratMapper;
+import com.canalplus.abonnement.service.historiquemouvement.HistoriqueMouvementMapper;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
