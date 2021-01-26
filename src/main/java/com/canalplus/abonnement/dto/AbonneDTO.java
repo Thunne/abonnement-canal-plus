@@ -1,27 +1,31 @@
 package com.canalplus.abonnement.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AbonneDTO implements Serializable {
 
     private static final long serialVersionUID = -9187874845176198895L;
 
-    private long id;
+    private Long id;
     private String nom;
     private String prenom;
     private String adresse;
-    private List<ContratDTO> contrats;
+    private List<ContratDTO> contrats = new ArrayList<>();
+    private List<HistoriqueMouvementDTO> historiqueMouvements = new ArrayList<>();
 
-    public AbonneDTO(long id) {
+    public AbonneDTO(Long id) {
         this.id = id;
     }
 
-    public long getId() {
+    public AbonneDTO() {}
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -55,5 +59,13 @@ public class AbonneDTO implements Serializable {
 
     public void setContrats(List<ContratDTO> contrats) {
         this.contrats = contrats;
+    }
+
+    public List<HistoriqueMouvementDTO> getHistoriqueMouvements() {
+        return historiqueMouvements;
+    }
+
+    public void setHistoriqueMouvements(List<HistoriqueMouvementDTO> historiqueMouvements) {
+        this.historiqueMouvements = historiqueMouvements;
     }
 }

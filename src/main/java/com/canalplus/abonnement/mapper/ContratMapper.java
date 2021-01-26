@@ -2,6 +2,7 @@ package com.canalplus.abonnement.mapper;
 
 import com.canalplus.abonnement.dto.ContratDTO;
 import com.canalplus.abonnement.entity.Contrat;
+import com.canalplus.abonnement.service.AbonneMapper;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring", uses = AbonneMapper.class)

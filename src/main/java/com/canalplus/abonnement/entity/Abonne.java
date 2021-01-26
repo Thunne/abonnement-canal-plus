@@ -1,13 +1,14 @@
 package com.canalplus.abonnement.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Abonne {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(name = "nom")
     private String nom;
@@ -18,11 +19,17 @@ public class Abonne {
     @Column(name = "adresse")
     private String adresse;
 
-    public long getId() {
+    @OneToMany(mappedBy = "abonne", fetch = FetchType.EAGER, cascade = CascadeType.MERGE, orphanRemoval = true)
+    private List<HistoriqueMouvement> historiqueMouvements;
+
+    @OneToMany(mappedBy = "abonne", fetch = FetchType.EAGER, cascade = CascadeType.MERGE, orphanRemoval = true)
+    private List<Contrat> contrats;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -48,5 +55,21 @@ public class Abonne {
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
+    }
+
+    public List<HistoriqueMouvement> getHistoriqueMouvements() {
+        return historiqueMouvements;
+    }
+
+    public void setHistoriqueMouvements(List<HistoriqueMouvement> historiqueMouvements) {
+        this.historiqueMouvements = historiqueMouvements;
+    }
+
+    public List<Contrat> getContrats() {
+        return contrats;
+    }
+
+    public void setContrats(List<Contrat> contrats) {
+        this.contrats = contrats;
     }
 }

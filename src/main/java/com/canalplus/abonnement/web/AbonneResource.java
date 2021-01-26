@@ -16,6 +16,11 @@ public class AbonneResource {
         this.abonneService = abonneService;
     }
 
+    /**
+     * Créer ou modifie un abonné
+     * @param abonne L'abonné à ajouter ou à modifier (s'il y a un id)
+     * @return Retourne la réponse de la requête
+     */
     @PostMapping("/abonne")
     public ResponseEntity<Abonne> save(@RequestBody AbonneDTO abonne) {
         Abonne abonneReponse = this.abonneService.save(abonne);
